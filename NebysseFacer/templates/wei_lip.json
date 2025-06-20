@@ -1,0 +1,466 @@
+{
+  "armature_name": "Armature.001",
+  "export_time": "2",
+  "bones": [
+    {
+      "name": "Lip_T.L",
+      "bone_data": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "matrix": [
+          [
+            -1.0,
+            1.667613408473656e-10,
+            9.775244507181924e-07,
+            0.024020712822675705
+          ],
+          [
+            3.102165280211011e-08,
+            -0.9994906783103943,
+            0.03190545365214348,
+            -0.002624607877805829
+          ],
+          [
+            9.770318456503446e-07,
+            0.03190542757511139,
+            0.9994912147521973,
+            0.055501826107501984
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "matrix_basis": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "collections": [
+          "WEI-Driver"
+        ],
+        "lock_location": [
+          false,
+          false,
+          false
+        ],
+        "lock_rotation": [
+          false,
+          false,
+          false
+        ],
+        "lock_scale": [
+          false,
+          false,
+          false
+        ],
+        "rotation_mode": "QUATERNION"
+      },
+      "constraints": [],
+      "drivers": [],
+      "parent_child_info": {
+        "parent": "mouth-root",
+        "children": [],
+        "use_connect": false,
+        "use_inherit_rotation": true,
+        "inherit_scale": "FULL",
+        "use_local_location": true
+      },
+      "custom_properties": {},
+      "bone_collections": [
+        {
+          "name": "WEI-Driver",
+          "is_visible": true,
+          "custom_properties": {}
+        }
+      ]
+    },
+    {
+      "name": "Lip_T.R",
+      "bone_data": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "matrix": [
+          [
+            -1.0,
+            1.667613408473656e-10,
+            -9.775244507181924e-07,
+            -0.024020716547966003
+          ],
+          [
+            -3.135507142815186e-08,
+            -0.9994906783103943,
+            0.03190545365214348,
+            -0.002624607877805829
+          ],
+          [
+            -9.770224096428137e-07,
+            0.03190542757511139,
+            0.9994912147521973,
+            0.055501826107501984
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "matrix_basis": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "collections": [
+          "WEI-Driver"
+        ],
+        "lock_location": [
+          false,
+          false,
+          false
+        ],
+        "lock_rotation": [
+          false,
+          false,
+          false
+        ],
+        "lock_scale": [
+          false,
+          false,
+          false
+        ],
+        "rotation_mode": "QUATERNION"
+      },
+      "constraints": [],
+      "drivers": [],
+      "parent_child_info": {
+        "parent": "mouth-root",
+        "children": [],
+        "use_connect": false,
+        "use_inherit_rotation": true,
+        "inherit_scale": "FULL",
+        "use_local_location": true
+      },
+      "custom_properties": {},
+      "bone_collections": [
+        {
+          "name": "WEI-Driver",
+          "is_visible": true,
+          "custom_properties": {}
+        }
+      ]
+    },
+    {
+      "name": "Lip_B.L",
+      "bone_data": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "matrix": [
+          [
+            -1.0,
+            1.6694545745821188e-10,
+            9.775244507181924e-07,
+            0.024020712822675705
+          ],
+          [
+            3.102164924939643e-08,
+            -0.9994906783103943,
+            0.0319056399166584,
+            -0.0026246088091284037
+          ],
+          [
+            9.770318456503446e-07,
+            0.03190561383962631,
+            0.9994912147521973,
+            0.025414234027266502
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "matrix_basis": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "collections": [
+          "WEI-Driver"
+        ],
+        "lock_location": [
+          false,
+          false,
+          false
+        ],
+        "lock_rotation": [
+          false,
+          false,
+          false
+        ],
+        "lock_scale": [
+          false,
+          false,
+          false
+        ],
+        "rotation_mode": "QUATERNION"
+      },
+      "constraints": [],
+      "drivers": [],
+      "parent_child_info": {
+        "parent": "mouth-root",
+        "children": [],
+        "use_connect": false,
+        "use_inherit_rotation": true,
+        "inherit_scale": "FULL",
+        "use_local_location": true
+      },
+      "custom_properties": {},
+      "bone_collections": [
+        {
+          "name": "WEI-Driver",
+          "is_visible": true,
+          "custom_properties": {}
+        }
+      ]
+    },
+    {
+      "name": "Lip_B.R",
+      "bone_data": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "matrix": [
+          [
+            -1.0,
+            1.6694545745821188e-10,
+            -9.775244507181924e-07,
+            -0.024020716547966003
+          ],
+          [
+            -3.1355437357660776e-08,
+            -0.9994906783103943,
+            0.0319056399166584,
+            -0.0026246090419590473
+          ],
+          [
+            -9.770224096428137e-07,
+            0.03190561383962631,
+            0.9994912147521973,
+            0.02541423588991165
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "matrix_basis": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "collections": [
+          "WEI-Driver"
+        ],
+        "lock_location": [
+          false,
+          false,
+          false
+        ],
+        "lock_rotation": [
+          false,
+          false,
+          false
+        ],
+        "lock_scale": [
+          false,
+          false,
+          false
+        ],
+        "rotation_mode": "QUATERNION"
+      },
+      "constraints": [],
+      "drivers": [],
+      "parent_child_info": {
+        "parent": "mouth-root",
+        "children": [],
+        "use_connect": false,
+        "use_inherit_rotation": true,
+        "inherit_scale": "FULL",
+        "use_local_location": true
+      },
+      "custom_properties": {},
+      "bone_collections": [
+        {
+          "name": "WEI-Driver",
+          "is_visible": true,
+          "custom_properties": {}
+        }
+      ]
+    }
+  ]
+}

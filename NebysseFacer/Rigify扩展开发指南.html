@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rigify 扩展开发指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        /* 侧边栏目录 */
+        .sidebar {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .toc {
+            list-style: none;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #555;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: block;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .toc a:hover {
+            background-color: #e8f4f8;
+            color: #2980b9;
+            transform: translateX(5px);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #2c3e50;
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        h3 {
+            color: #2980b9;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #8e44ad;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        /* 段落和列表 */
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* 代码块样式 */
+        pre {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        code {
+            background: #f1f5f9;
+            color: #e53e3e;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e6ed;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* 警告框样式 */
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-left: 5px solid #fdcb6e;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+            color: #d63031;
+        }
+
+        /* 信息框样式 */
+        .info {
+            background: #e3f2fd;
+            border: 1px solid #bbdefb;
+            border-left: 5px solid #2196f3;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .info::before {
+            content: "💡 ";
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        /* 成功框样式 */
+        .success {
+            background: #e8f5e8;
+            border: 1px solid #c8e6c9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .success::before {
+            content: "✅ ";
+            font-weight: bold;
+            color: #388e3c;
+        }
+
+        /* 层级结构显示 */
+        .hierarchy {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 15px;
+            }
+
+            .sidebar {
+                position: static;
+                max-height: none;
+            }
+
+            .main-content {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            pre {
+                padding: 15px;
+                font-size: 13px;
+            }
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 页面顶部间距 */
+        section {
+            scroll-margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏目录 -->
+        <nav class="sidebar">
+            <h3>📖 目录导航</h3>
+            <ul class="toc">
+                <li><a href="#开发前准备">1. 开发前准备</a></li>
+                <li><a href="#核心注意事项">2. 核心注意事项</a></li>
+                <li><a href="#项目结构规范">3. 项目结构规范</a></li>
+                <li><a href="#核心功能函数详解">4. 核心功能函数详解</a></li>
+                <li><a href="#参数系统使用">5. 参数系统使用</a></li>
+                <li><a href="#约束和驱动器管理">6. 约束和驱动器管理</a></li>
+                <li><a href="#调试和错误处理">7. 调试和错误处理</a></li>
+                <li><a href="#最佳实践">8. 最佳实践</a></li>
+                <li><a href="#总结">9. 总结</a></li>
+            </ul>
+        </nav>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <h1>Rigify 扩展开发指南</h1>
+
+            <section id="开发前准备">
+                <h2>开发前准备</h2>
+                
+                <h3>环境要求</h3>
+                <ul>
+                    <li><strong>Blender版本</strong>: 4.1+</li>
+                    <li><strong>Python版本</strong>: 3.10+</li>
+                    <li><strong>必需插件</strong>: Rigify (已启用)</li>
+                </ul>
+
+                <h3>基础知识要求</h3>
+                <ul>
+                    <li>Python 面向对象编程</li>
+                    <li>Blender API (bpy) 基础</li>
+                    <li>Rigify 框架结构理解</li>
+                    <li>骨骼系统和约束原理</li>
+                </ul>
+            </section>
+
+            <section id="核心注意事项">
+                <h2>核心注意事项</h2>
+
+                <h3>1. 目录结构严格要求</h3>
+                <pre><code>你的扩展名/
+├── rigs/                    # 必需 - 主要绑定模块
+│   ├── 主控制器.py           # 命名规范: 功能_用途.py
+│   ├── 子控制器_l.py         # 左右分离时使用 _l/_r 后缀
+│   ├── 子控制器_r.py
+│   ├── 基础类.py             # 共享基础类
+│   └── utils/               # 工具模块目录
+├── templates/               # 可选 - 模板文件
+│   └── 模板.blend
+└── utils/                   # 可选 - 全局工具</code></pre>
+
+                <div class="warning">
+                    <strong>重要</strong>: <code>rigs/</code> 目录是Rigify识别的关键，必须存在且结构正确
+                </div>
+
+                <h3>2. 类继承关系</h3>
+                <pre><code>from rigify.base_rig import BaseRig
+
+# 主控制器 - 必须继承BaseRig
+class Rig(BaseRig):
+    """主控制器类"""
+    
+# 子控制器 - 可以继承自定义基类
+class BaseFaceUPLocator(BaseRig):
+    """自定义基础定位器类"""
+    
+class Rig(BaseFaceUPLocator):
+    """子控制器继承自定义基类"""</code></pre>
+
+                <div class="warning">
+                    <strong>注意</strong>: 每个绑定文件必须包含名为 <code>Rig</code> 的主类
+                </div>
+
+                <h3>3. 文件命名规范</h3>
+                <ul>
+                    <li><strong>主控制器</strong>: <code>项目名_主要功能.py</code></li>
+                    <li><strong>左右对称</strong>: <code>功能名_l.py</code> / <code>功能名_r.py</code></li>
+                    <li><strong>工具类</strong>: <code>功能_utils.py</code> 或 <code>工具名.py</code></li>
+                </ul>
+
+                <h3>4. Blender环境特殊性</h3>
+                <div class="info">
+                    由于Blender的特殊运行环境：
+                    <ul>
+                        <li><strong>不需要生成测试脚本</strong> (除非用户强制要求)</li>
+                        <li><strong>无法通过控制台直接调试</strong></li>
+                        <li><strong>需要手动在Blender内运行测试</strong></li>
+                        <li><strong>错误信息主要通过控制台输出</strong></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="项目结构规范">
+                <h2>项目结构规范</h2>
+
+                <h3>模块化设计原则</h3>
+                <pre><code># 主控制器 - 统一管理
+class Rig(BaseRig):
+    def __init__(self, generator, obj, bone_name, **params):
+        super().__init__(generator, obj, bone_name, **params)
+        # 注册子定位器
+        self.child_rigs = []
+        
+    def register_child_rig(self, child_rig):
+        """注册子控制器"""
+        self.child_rigs.append(child_rig)
+
+# 子控制器 - 独立功能
+class BaseFaceUPLocator(BaseRig):
+    def register_to_faceup_controller(self):
+        """向主控制器注册自己"""
+        # 查找并注册到主控制器</code></pre>
+
+                <h3>集合管理系统</h3>
+                <pre><code>def create_bone_collections(self):
+    """创建骨骼集合 - 组织和分类骨骼"""
+    collections = {
+        'Neb_Face': {'ui_row': 1, 'color_set_id': 5},  # 主要面部系统
+        'Neb_Con': {'ui_row': 2, 'color_set_id': 2},   # 主控制器
+        'Neb_MCH': {'ui_row': 3, 'color_set_id': 4},   # 机制骨骼
+        'Neb_Disw': {'ui_row': 4, 'color_set_id': 3}   # 距离权重控制
+    }
+    
+    for name, props in collections.items():
+        coll = self.generator.collection_manager.create_collection(name)
+        coll.ui_row = props['ui_row']
+        coll.color_set_id = props['color_set_id']</code></pre>
+            </section>
+
+            <section id="核心功能函数详解">
+                <h2>核心功能函数详解</h2>
+
+                <h3>1. <code>generate_bones()</code> - 骨骼生成函数</h3>
+                <p><strong>作用</strong>: 创建绑定所需的所有骨骼结构</p>
+
+                <pre><code>def generate_bones(self):
+    """骨骼生成阶段 - Rigify生成流程第一步"""
+    
+    # 1. 创建根骨骼
+    root_name = self.copy_bone(self.bones.org, "主根骨骼")
+    
+    # 2. 创建控制骨骼
+    control_name = self.copy_bone(self.bones.org, "控制器骨骼")
+    
+    # 3. 创建机制骨骼 (MCH)
+    mch_name = self.copy_bone(self.bones.org, "MCH-机制骨骼")
+    
+    # 4. 创建变形骨骼 (DEF) - 可选
+    def_name = self.copy_bone(self.bones.org, "DEF-变形骨骼")
+    
+    # 5. 保存骨骼引用以供后续使用
+    self.bones.ctrl = control_name
+    self.bones.mch = mch_name
+    
+    # 6. 设置骨骼基本属性
+    self.get_bone(control_name).use_deform = False  # 控制骨骼不参与变形
+    self.get_bone(mch_name).use_deform = False      # 机制骨骼不参与变形</code></pre>
+
+                <div class="info">
+                    <strong>关键要点</strong>:
+                    <ul>
+                        <li>必须在所有绑定类中实现</li>
+                        <li>只创建骨骼，不设置约束或父子关系</li>
+                        <li>使用 <code>self.copy_bone()</code> 复制现有骨骼</li>
+                        <li>骨骼命名要有意义且唯一</li>
+                    </ul>
+                </div>
+
+                <h3>2. <code>rig_bones()</code> - 骨骼装配函数</h3>
+                <p><strong>作用</strong>: 设置约束系统、骨骼分配和属性配置</p>
+
+                <pre><code>def rig_bones(self):
+    """骨骼装配阶段 - 设置约束和骨骼行为"""
+    
+    # 1. 分配骨骼到集合
+    self.generator.collection_manager.assign_bone(
+        self.bones.ctrl, 'Neb_Con'  # 控制器骨骼 -> 控制器集合
+    )
+    
+    # 2. 设置复制变换约束
+    if self.params.enable_copy_constraints:
+        self.setup_copy_transform_constraints()
+    
+    # 3. 从模板加载约束
+    if hasattr(self.params, 'load_constraints_from_template'):
+        if self.params.load_constraints_from_template:
+            self.load_constraints_from_template()
+    
+    # 4. 设置驱动器
+    self.setup_drivers()
+    
+    # 5. 配置骨骼锁定/解锁
+    self.configure_bone_locks()</code></pre>
+
+                <div class="info">
+                    <strong>关键要点</strong>:
+                    <ul>
+                        <li>在<code>generate_bones()</code>之后执行</li>
+                        <li>负责设置所有约束和驱动器</li>
+                        <li>管理骨骼的集合分配</li>
+                        <li>配置骨骼的可见性和锁定状态</li>
+                    </ul>
+                </div>
+
+                <h3>3. <code>parent_bones()</code> - 父子关系函数</h3>
+                <p><strong>作用</strong>: 建立骨骼之间的层级关系</p>
+
+                <pre><code>def parent_bones(self):
+    """设置骨骼父子关系 - 建立骨骼层级结构"""
+    
+    # 1. 设置主要层级结构
+    self.set_bone_parent(self.bones.ctrl, self.bones.root)  # 控制器 -> 根骨骼
+    
+    # 2. 设置机制骨骼层级
+    for mch_bone in self.mch_bones:
+        self.set_bone_parent(mch_bone, self.bones.mch_root)
+    
+    # 3. 特殊的权重骨骼父级设置
+    for constraint_mapping in self.constraint_mappings:
+        source_bone, neboffset_bone = constraint_mapping
+        if self.get_bone(neboffset_bone):
+            # 设置NebOffset骨骼的父级为特定根骨骼
+            self.set_bone_parent(neboffset_bone, 'Neb_RigifyFace')
+    
+    # 4. 子控制器层级
+    for child_rig in self.child_rigs:
+        child_rig.setup_parent_hierarchy()</code></pre>
+
+                <div class="hierarchy">
+                    <strong>层级结构示例</strong>:<br>
+                    Neb_Facer_root (项目根)<br>
+                    ├── Neb_face-root (面部根)<br>
+                    ├── Neb_RigifyFace (Rigify面部)<br>
+                    │   └── NebOffset-* (所有权重骨骼)<br>
+                    └── brow-root.L/R (眉毛根)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;└── eyelip-root.L/R (眼睑根)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── mouth-root (嘴部根)
+                </div>
+
+                <h3>4. <code>configure_bones()</code> - 骨骼配置函数</h3>
+                <p><strong>作用</strong>: 配置骨骼的显示属性、锁定状态等</p>
+
+                <pre><code>def configure_bones(self):
+    """配置骨骼属性和显示"""
+    
+    # 1. 设置控制器骨骼属性
+    ctrl_bone = self.get_bone(self.bones.ctrl)
+    ctrl_bone.lock_location = (True, True, False)  # 锁定X,Y轴移动
+    ctrl_bone.lock_rotation = (False, False, True) # 锁定Z轴旋转
+    ctrl_bone.lock_scale = (True, True, True)      # 锁定所有缩放
+    
+    # 2. 设置骨骼颜色和形状
+    pose_bone = self.obj.pose.bones.get(self.bones.ctrl)
+    if pose_bone:
+        pose_bone.custom_shape = self.load_widget('控制器形状')
+        pose_bone.bone_group_index = 1  # 设置骨骼组
+    
+    # 3. 隐藏机制骨骼
+    for mch_bone in self.mch_bones:
+        bone = self.get_bone(mch_bone)
+        bone.hide = True  # 在编辑模式隐藏
+        
+        pose_bone = self.obj.pose.bones.get(mch_bone)
+        if pose_bone:
+            pose_bone.bone.hide = True  # 在姿态模式隐藏</code></pre>
+            </section>
+
+            <section id="参数系统使用">
+                <h2>参数系统使用</h2>
+
+                <h3>参数定义</h3>
+                <pre><code>@staticmethod
+def add_parameters(params):
+    """添加用户可配置参数"""
+    
+    # 基础开关参数
+    params.enable_copy_constraints = BoolProperty(
+        name="启用复制约束",
+        description="是否启用复制变换约束",
+        default=True
+    )
+    
+    # 数值参数
+    params.constraint_influence = FloatProperty(
+        name="约束影响",
+        description="约束的影响权重",
+        default=1.0,
+        min=0.0,
+        max=1.0
+    )
+    
+    # 枚举参数
+    params.constraint_mix_mode = EnumProperty(
+        name="混合模式",
+        description="约束的混合模式",
+        items=[
+            ('BEFORE', "之前", "在现有变换之前应用"),
+            ('AFTER', "之后", "在现有变换之后应用"),
+            ('REPLACE', "替换", "替换现有变换")
+        ],
+        default='BEFORE'
+    )</code></pre>
+
+                <h3>参数使用</h3>
+                <pre><code>def generate_bones(self):
+    # 读取用户参数
+    if self.params.enable_copy_constraints:
+        # 执行约束相关逻辑
+        pass
+    
+    # 使用数值参数
+    influence = self.params.constraint_influence
+    
+    # 使用坐标参数
+    if hasattr(self.params, 'use_custom_positions') and self.params.use_custom_positions:
+        custom_pos = Vector((
+            self.params.disw_t_001_x,
+            self.params.disw_t_001_y,
+            self.params.disw_t_001_z
+        ))</code></pre>
+            </section>
+
+            <section id="约束和驱动器管理">
+                <h2>约束和驱动器管理</h2>
+
+                <h3>约束创建和配置</h3>
+                <pre><code>def create_constraint(self, bone_name, constraint_type, **kwargs):
+    """创建约束的通用方法"""
+    pose_bone = self.obj.pose.bones.get(bone_name)
+    if not pose_bone:
+        print(f"警告: 骨骼 {bone_name} 不存在")
+        return None
+    
+    constraint = pose_bone.constraints.new(constraint_type)
+    
+    # 设置约束属性
+    for prop, value in kwargs.items():
+        if hasattr(constraint, prop):
+            setattr(constraint, prop, value)
+    
+    return constraint
+
+# 使用示例
+def setup_limit_constraints(self):
+    """设置限制约束"""
+    self.create_constraint(
+        self.bones.ctrl,
+        'LIMIT_LOCATION',
+        use_min_x=True, min_x=-0.1,
+        use_max_x=True, max_x=0.1,
+        owner_space='LOCAL'
+    )</code></pre>
+
+                <h3>驱动器管理</h3>
+                <pre><code>def create_driver(self, target_bone, property_path, expression=""):
+    """创建驱动器"""
+    driver = self.obj.pose.bones[target_bone].driver_add(property_path)
+    
+    if expression:
+        driver.driver.expression = expression
+    
+    return driver
+
+# 使用示例
+def setup_facial_drivers(self):
+    """设置面部驱动器"""
+    # 眉毛高度驱动器
+    driver = self.create_driver(
+        'brow-control.L',
+        'location',
+        'ctrl_influence * 0.5'
+    )
+    
+    # 添加驱动器变量
+    var = driver.driver.variables.new()
+    var.name = 'ctrl_influence'
+    var.targets[0].id = self.obj
+    var.targets[0].bone_target = 'main-control'
+    var.targets[0].transform_type = 'LOC_Z'</code></pre>
+            </section>
+
+            <section id="调试和错误处理">
+                <h2>调试和错误处理</h2>
+
+                <h3>调试信息输出</h3>
+                <pre><code>def debug_print(self, message, level="INFO"):
+    """统一的调试信息输出"""
+    prefix = f"[{self.__class__.__name__}] {level}: "
+    print(f"{prefix}{message}")
+
+# 使用示例
+def generate_bones(self):
+    self.debug_print("开始生成骨骼")
+    
+    # 详细的进度信息
+    self.debug_print(f"参数状态: enable_copy_constraints={self.params.enable_copy_constraints}")
+    
+    bone_count = len(self.bones_to_create)
+    self.debug_print(f"计划创建 {bone_count} 个骨骼")</code></pre>
+
+                <h3>错误处理最佳实践</h3>
+                <pre><code>def safe_bone_operation(self, bone_name, operation):
+    """安全的骨骼操作包装器"""
+    try:
+        bone = self.get_bone(bone_name)
+        if not bone:
+            self.debug_print(f"骨骼 {bone_name} 不存在", "WARNING")
+            return False
+        
+        operation(bone)
+        return True
+        
+    except Exception as e:
+        self.debug_print(f"骨骼 {bone_name} 操作失败: {str(e)}", "ERROR")
+        return False
+
+# 使用示例
+def configure_bones(self):
+    def set_bone_locks(bone):
+        bone.lock_location = (True, True, False)
+    
+    self.safe_bone_operation(self.bones.ctrl, set_bone_locks)</code></pre>
+            </section>
+
+            <section id="最佳实践">
+                <h2>最佳实践</h2>
+
+                <h3>1. 代码组织</h3>
+                <ul>
+                    <li><strong>单一职责</strong>: 每个函数只做一件事</li>
+                    <li><strong>模块化</strong>: 相关功能组织在一起</li>
+                    <li><strong>可扩展</strong>: 设计时考虑未来的扩展需求</li>
+                </ul>
+
+                <h3>2. 性能优化</h3>
+                <pre><code># 缓存经常访问的对象
+def __init__(self, generator, obj, bone_name, **params):
+    super().__init__(generator, obj, bone_name, **params)
+    self._pose_bones_cache = {}
+
+def get_pose_bone_cached(self, bone_name):
+    """缓存姿态骨骼访问"""
+    if bone_name not in self._pose_bones_cache:
+        self._pose_bones_cache[bone_name] = self.obj.pose.bones.get(bone_name)
+    return self._pose_bones_cache[bone_name]</code></pre>
+
+                <h3>3. 用户体验</h3>
+                <ul>
+                    <li><strong>有意义的参数名称和描述</strong></li>
+                    <li><strong>合理的默认值</strong></li>
+                    <li><strong>清晰的错误信息</strong></li>
+                    <li><strong>进度反馈</strong></li>
+                </ul>
+
+                <h3>4. 兼容性考虑</h3>
+                <pre><code>def ensure_blender_compatibility(self):
+    """确保Blender版本兼容性"""
+    import bpy
+    
+    if bpy.app.version < (4, 1, 0):
+        raise Exception("需要Blender 4.1或更高版本")
+    
+    # 检查必需的插件
+    if 'rigify' not in bpy.context.preferences.addons:
+        raise Exception("需要启用Rigify插件")</code></pre>
+            </section>
+
+            <section id="总结">
+                <h2>总结</h2>
+
+                <div class="success">
+                    开发Rigify扩展需要掌握：
+                    <ol>
+                        <li><strong>核心函数流程</strong>: <code>generate_bones()</code> → <code>rig_bones()</code> → <code>parent_bones()</code> → <code>configure_bones()</code></li>
+                        <li><strong>参数系统</strong>: 为用户提供灵活的配置选项</li>
+                        <li><strong>约束管理</strong>: 正确设置骨骼约束和驱动器</li>
+                        <li><strong>错误处理</strong>: 优雅地处理各种异常情况</li>
+                        <li><strong>调试技巧</strong>: 有效的调试和验证方法</li>
+                    </ol>
+                </div>
+
+                <p>遵循这些指导原则，您就能开发出稳定、可靠的Rigify扩展。记住，Blender环境的特殊性要求我们更加重视代码的健壮性和调试信息的完整性。</p>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('.toc a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 高亮当前章节
+        function highlightCurrentSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const tocLinks = document.querySelectorAll('.toc a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.style.backgroundColor = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.style.backgroundColor = '#3498db';
+                    link.style.color = 'white';
+                }
+            });
+        }
+
+        // 监听滚动事件
+        window.addEventListener('scroll', highlightCurrentSection);
+        
+        // 页面加载完成后执行一次
+        document.addEventListener('DOMContentLoaded', highlightCurrentSection);
+    </script>
+</body>
+</html> 

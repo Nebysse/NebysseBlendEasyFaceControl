@@ -1,0 +1,1315 @@
+{
+  "armature_name": "Armature.001",
+  "export_time": "2",
+  "bones": [
+    {
+      "name": "face-root",
+      "bone_data": {
+        "location": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_quaternion": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rotation_euler": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "matrix": [
+          [
+            -1.0,
+            1.6694734483735374e-10,
+            8.767143526711152e-07,
+            0.0
+          ],
+          [
+            2.7805215907505954e-08,
+            -0.9994906783103943,
+            0.03190561383962631,
+            0.0
+          ],
+          [
+            8.76272963523661e-07,
+            0.03190558776259422,
+            0.9994912147521973,
+            0.07045260071754456
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "matrix_basis": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "collections": [
+          "other"
+        ],
+        "lock_location": [
+          false,
+          false,
+          false
+        ],
+        "lock_rotation": [
+          false,
+          false,
+          false
+        ],
+        "lock_scale": [
+          false,
+          false,
+          false
+        ],
+        "rotation_mode": "QUATERNION"
+      },
+      "constraints": [],
+      "drivers": [
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴倾斜.L\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "嘴巴倾斜.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴倾斜.R\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "嘴巴倾斜.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴变小\"]",
+          "array_index": 0,
+          "expression": "1-(var-0.5)*2",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"下嘴唇偏移.L\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "下嘴唇偏移.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"下嘴唇偏移.R\"]",
+          "array_index": 0,
+          "expression": "(var/0.025-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "下嘴唇偏移.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴偏移.R\"]",
+          "array_index": 0,
+          "expression": "var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴偏移.L\"]",
+          "array_index": 0,
+          "expression": "-var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴巴张开\"]",
+          "array_index": 0,
+          "expression": "-var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"笑脸\"]",
+          "array_index": 0,
+          "expression": "-var/pi*4",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "ROT_Y",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"不开心\"]",
+          "array_index": 0,
+          "expression": "var/pi*4",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "ROT_Y",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"嘴唇张开\"]",
+          "array_index": 0,
+          "expression": "var-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"宽脸\"]",
+          "array_index": 0,
+          "expression": "var-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-close.L\"]",
+          "array_index": 0,
+          "expression": "-var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-close.R\"]",
+          "array_index": 0,
+          "expression": "-var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-open.L\"]",
+          "array_index": 0,
+          "expression": "var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-open.R\"]",
+          "array_index": 0,
+          "expression": "var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-downup.L\"]",
+          "array_index": 0,
+          "expression": "var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"eye-downup.R\"]",
+          "array_index": 0,
+          "expression": "-var/0.015",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "eyelip-con.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"皱眉.L\"]",
+          "array_index": 0,
+          "expression": "(x/0.015)*(-y/0.015)*(x/0.015>0)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "x",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.R\"]",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.L"
+                }
+              ]
+            },
+            {
+              "name": "y",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"皱眉.R\"]",
+          "array_index": 0,
+          "expression": "(-x/0.015)*(-y/0.015)*(x/0.015<0)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "x",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.R\"]",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.R"
+                }
+              ]
+            },
+            {
+              "name": "y",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.L\"]",
+          "array_index": 0,
+          "expression": "(x/0.015)*(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "x",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.R\"]",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.L"
+                }
+              ]
+            },
+            {
+              "name": "y",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.R\"]",
+          "array_index": 0,
+          "expression": "(-x/0.015)*(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "x",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "pose.bones[\"face-root\"][\"眉毛释怀.R\"]",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.R"
+                }
+              ]
+            },
+            {
+              "name": "y",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "brow-con.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"眉毛释怀中.L\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.02)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.L.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"眉毛释怀中.R\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.02)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.R.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.L.001\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.L.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.L.002\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.L.002"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.L\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.R.001\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.R.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.R\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.T.R.002\"]",
+          "array_index": 0,
+          "expression": "1-(y/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "y",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.T.R.002"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.B.L\"]",
+          "array_index": 0,
+          "expression": "1-(var/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.B.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.B.R\"]",
+          "array_index": 0,
+          "expression": "1-(var/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.B.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.B.L.001\"]",
+          "array_index": 0,
+          "expression": "1-(var/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.L"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.B.L.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"WEI_brow.B.R.001\"]",
+          "array_index": 0,
+          "expression": "1-(var/0.015)",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "brow-con.R"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "WEI_brow.B.R.001"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_B.L\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "下嘴唇偏移.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_B.R\"]",
+          "array_index": 0,
+          "expression": "(var/0.025-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "下嘴唇偏移.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"unhappy_lip\"]",
+          "array_index": 0,
+          "expression": "var/pi*4",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "ROT_Y",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_open\"]",
+          "array_index": 0,
+          "expression": "var-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"tilt.L\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "嘴巴倾斜.L"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"tilt.R\"]",
+          "array_index": 0,
+          "expression": "(var/0.015-1)*-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "LOC_DIFF",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "mouth-con"
+                },
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "WORLD_SPACE",
+                  "bone_target": "嘴巴倾斜.R"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_offset.L\"]",
+          "array_index": 0,
+          "expression": "-var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_offset.R\"]",
+          "array_index": 0,
+          "expression": "var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"lip_small\"]",
+          "array_index": 0,
+          "expression": "1-(var-0.5)*2",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"mouth_open\"]",
+          "array_index": 0,
+          "expression": "-var/0.025",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "LOC_Z",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"win_mouth\"]",
+          "array_index": 0,
+          "expression": "var-1",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "SCALE_X",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "data_path": "pose.bones[\"face-root\"][\"smiley\"]",
+          "array_index": 0,
+          "expression": "-var/pi*4",
+          "type": "SCRIPTED",
+          "variables": [
+            {
+              "name": "var",
+              "type": "TRANSFORMS",
+              "targets": [
+                {
+                  "id": "Armature.001",
+                  "data_path": "",
+                  "transform_type": "ROT_Y",
+                  "transform_space": "LOCAL_SPACE",
+                  "bone_target": "mouth-con"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parent_child_info": {
+        "parent": null,
+        "children": [
+          "mouth-root",
+          "eyelip-root.L",
+          "eyelip-root.R",
+          "brow-root.L",
+          "brow-root.R"
+        ],
+        "use_connect": false,
+        "use_inherit_rotation": true,
+        "inherit_scale": "FULL",
+        "use_local_location": true
+      },
+      "custom_properties": {
+        "eye-close.L": 0.0,
+        "eye-close.R": 0.0,
+        "eye-open.L": 0.0,
+        "eye-open.R": 0.0,
+        "eye-downup.L": 0.0,
+        "eye-downup.R": 0.0,
+        "WEI_brow.T.L.001": 0.0,
+        "WEI_brow.T.R.001": 0.0,
+        "WEI_brow.T.L.002": 0.0,
+        "WEI_brow.T.R.002": 0.0,
+        "WEI_brow.T.L": 0.0,
+        "WEI_brow.T.R": 0.0,
+        "WEI_brow.B.L.001": 0.0,
+        "WEI_brow.B.R.001": 0.07727949321269989,
+        "WEI_brow.B.L": 0.0,
+        "WEI_brow.B.R": 0.0,
+        "lip_B.L": 0.0,
+        "lip_B.R": 0.0,
+        "unhappy_lip": 0.0,
+        "lip_open": 0.0,
+        "tilt.L": 0.0,
+        "tilt.R": 0.0,
+        "lip_offset.L": 0.0,
+        "lip_offset.R": 0.0,
+        "lip_small": 0.0,
+        "mouth_open": 0.0,
+        "win_mouth": 0.0,
+        "smiley": 0.0
+      },
+      "bone_collections": [
+        {
+          "name": "other",
+          "is_visible": true,
+          "custom_properties": {}
+        }
+      ]
+    }
+  ]
+}

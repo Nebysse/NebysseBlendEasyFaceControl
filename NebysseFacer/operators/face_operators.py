@@ -1,0 +1,237 @@
+"""
+NebysseFacer 面部操作器
+提供面部绑定相关的操作功能
+"""
+
+import bpy
+from bpy.types import Operator
+from bpy.props import StringProperty, BoolProperty, EnumProperty
+
+from ..utils.face_utils import create_face_bone_collections, assign_bone_to_collection
+from ..utils.bone_utils import create_custom_property
+
+
+class NEBYSSE_OT_create_face_bone_collections(Operator):
+    """创建面部骨骼集合"""
+    bl_idname = "nebysse.create_face_bone_collections"
+    bl_label = "创建面部骨骼集合"
+    bl_description = "为当前绑定创建标准的面部骨骼组"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    @classmethod
+    def poll(cls, context):
+        return (context.active_object and 
+                context.active_object.type == 'ARMATURE' and
+                context.mode == 'POSE')
+    
+    def execute(self, context):
+        rig = context.active_object
+        
+        try:
+            create_face_bone_collections(rig)
+            self.report({'INFO'}, "面部骨骼组创建成功")
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"创建面部骨骼组失败: {str(e)}")
+            return {'CANCELLED'}
+
+
+class NEBYSSE_OT_assign_bone_to_face_group(Operator):
+    """将骨骼分配到面部组"""
+    bl_idname = "nebysse.assign_bone_to_face_group"
+    bl_label = "分配到面部组"
+    bl_description = "将选中的骨骼分配到指定的面部骨骼组"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    group_name: EnumProperty(
+        name="骨骼集合",
+        items=[
+            ('Face Primary', '主要面部', '主要面部控制器'),
+            ('Face Secondary', '次要面部', '次要面部控制器'),
+            ('Face Detail', '细节面部', '细节面部控制器'),
+            ('Face Mechanism', '面部机制', '面部机制骨骼'),
+            ('Face Deform', '面部变形', '面部变形骨骼'),
+        ],
+        default='Face Primary'
+    )
+    
+    @classmethod
+    def poll(cls, context):
+        return (context.active_object and 
+                context.active_object.type == 'ARMATURE' and
+                context.mode == 'POSE' and
+                context.selected_pose_bones)
+    
+    def execute(self, context):
+        rig = context.active_object
+        selected_bones = context.selected_pose_bones
+        
+        success_count = 0
+        for bone in selected_bones:
+            try:
+                assign_bone_to_collection(rig, bone.name, self.group_name)
+                success_count += 1
+            except Exception as e:
+                self.report({'WARNING'}, f"无法分配骨骼 {bone.name}: {str(e)}")
+        
+        if success_count > 0:
+            self.report({'INFO'}, f"成功分配 {success_count} 个骨骼到 {self.group_name}")
+            return {'FINISHED'}
+        else:
+            self.report({'ERROR'}, "没有骨骼被成功分配")
+            return {'CANCELLED'}
+
+
+class NEBYSSE_OT_create_face_custom_property(Operator):
+    """为骨骼创建面部自定义属性"""
+    bl_idname = "nebysse.create_face_custom_property"
+    bl_label = "创建面部属性"
+    bl_description = "为选中的骨骼创建面部控制自定义属性"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    property_name: StringProperty(
+        name="属性名称",
+        default="face_control",
+        description="自定义属性的名称"
+    )
+    
+    property_type: EnumProperty(
+        name="属性类型",
+        items=[
+            ('FLOAT', '浮点数', '浮点数属性'),
+            ('INT', '整数', '整数属性'),
+            ('BOOL', '布尔值', '布尔值属性'),
+        ],
+        default='FLOAT'
+    )
+    
+    default_value: StringProperty(
+        name="默认值",
+        default="0.0",
+        description="属性的默认值"
+    )
+    
+    min_value: StringProperty(
+        name="最小值",
+        default="-1.0",
+        description="属性的最小值（可选）"
+    )
+    
+    max_value: StringProperty(
+        name="最大值",
+        default="1.0",
+        description="属性的最大值（可选）"
+    )
+    
+    description: StringProperty(
+        name="描述",
+        default="面部控制属性",
+        description="属性的描述"
+    )
+    
+    @classmethod
+    def poll(cls, context):
+        return (context.active_object and 
+                context.active_object.type == 'ARMATURE' and
+                context.mode == 'POSE' and
+                context.selected_pose_bones)
+    
+    def execute(self, context):
+        rig = context.active_object
+        selected_bones = context.selected_pose_bones
+        
+        # 转换值类型
+        try:
+            if self.property_type == 'FLOAT':
+                default_val = float(self.default_value)
+                min_val = float(self.min_value) if self.min_value else None
+                max_val = float(self.max_value) if self.max_value else None
+            elif self.property_type == 'INT':
+                default_val = int(float(self.default_value))
+                min_val = int(float(self.min_value)) if self.min_value else None
+                max_val = int(float(self.max_value)) if self.max_value else None
+            else:  # BOOL
+                default_val = bool(float(self.default_value))
+                min_val = None
+                max_val = None
+        except ValueError:
+            self.report({'ERROR'}, "无效的数值格式")
+            return {'CANCELLED'}
+        
+        success_count = 0
+        for bone in selected_bones:
+            try:
+                create_custom_property(
+                    rig, bone.name, self.property_name, 
+                    default_val, min_val, max_val, self.description
+                )
+                success_count += 1
+            except Exception as e:
+                self.report({'WARNING'}, f"无法为骨骼 {bone.name} 创建属性: {str(e)}")
+        
+        if success_count > 0:
+            self.report({'INFO'}, f"成功为 {success_count} 个骨骼创建属性 '{self.property_name}'")
+            return {'FINISHED'}
+        else:
+            self.report({'ERROR'}, "没有属性被成功创建")
+            return {'CANCELLED'}
+    
+    def invoke(self, context, event):
+        return context.window_manager.invoke_props_dialog(self)
+
+
+class NEBYSSE_OT_mirror_face_bones(Operator):
+    """镜像面部骨骼设置"""
+    bl_idname = "nebysse.mirror_face_bones"
+    bl_label = "镜像面部骨骼"
+    bl_description = "将左侧面部骨骼的设置镜像到右侧"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    @classmethod
+    def poll(cls, context):
+        return (context.active_object and 
+                context.active_object.type == 'ARMATURE' and
+                context.mode == 'POSE')
+    
+    def execute(self, context):
+        rig = context.active_object
+        
+        # 查找左右对称的骨骼
+        left_bones = []
+        right_bones = []
+        
+        for bone in rig.pose.bones:
+            if bone.name.endswith('.L') or bone.name.endswith('_L'):
+                left_bones.append(bone.name)
+                # 查找对应的右侧骨骼
+                if bone.name.endswith('.L'):
+                    right_name = bone.name[:-2] + '.R'
+                else:
+                    right_name = bone.name[:-2] + '_R'
+                
+                if right_name in rig.pose.bones:
+                    right_bones.append(right_name)
+                else:
+                    self.report({'WARNING'}, f"找不到对应的右侧骨骼: {right_name}")
+        
+        if not left_bones:
+            self.report({'WARNING'}, "没有找到左侧面部骨骼")
+            return {'CANCELLED'}
+        
+        try:
+            from ..utils.face_utils import mirror_face_setup
+            mirror_face_setup(rig, left_bones, right_bones)
+            self.report({'INFO'}, f"成功镜像 {len(left_bones)} 个面部骨骼设置")
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"镜像面部骨骼失败: {str(e)}")
+            return {'CANCELLED'}
+
+
+# 注册所有操作符
+classes = [
+    NEBYSSE_OT_create_face_bone_collections,
+    NEBYSSE_OT_assign_bone_to_face_group,
+    NEBYSSE_OT_create_face_custom_property,
+    NEBYSSE_OT_mirror_face_bones,
+] 
